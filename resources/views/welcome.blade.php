@@ -421,19 +421,19 @@
     @if (isset($menu[0]) ? $menu[0]->location == 1 : '')
         @include('menu.header')
     @else
-        <a href="http://localhost/tablereletion/public/manage-menus"> Add Header Menu</a>
+        <a href="{{ url('/') }}/manage-menus"> Add Header Menu</a>
     @endif
 
     @if (isset($menu[1]) ? $menu[1]->location == 2 : '')
         @include('menu.footer')
     @else
-        <a href="http://localhost/tablereletion/public/manage-menus">Add Footer Menu</a>
+        <a href="{{ url('/') }}/manage-menus">Add Footer Menu</a>
     @endif
 
     @if (isset($menu[2]) ? $menu[2]->location == 3 : '')
         @include('menu.sidebar')
     @else
-        <a href="http://localhost/tablereletion/public/manage-menus">Add Sidebar Menu</a>
+        <a href="{{ url('/') }}/manage-menus">Add Sidebar Menu</a>
     @endif
 
     <div

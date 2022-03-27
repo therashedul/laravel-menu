@@ -5,29 +5,7 @@
  <script src="{{ asset('vendors/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
  <!-- Bootstrap -->
- <!-- FastClick -->
- <script src="{{ asset('vendors/fastclick/lib/fastclick.js') }}"></script>
- <!-- NProgress -->
- <script src="{{ asset('vendors/nprogress/nprogress.js') }}"></script>
- <!-- bootstrap-progressbar -->
- <script src="{{ asset('vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}">
- </script>
- <!-- bootstrap-daterangepicker -->
- <script type="text/javascript" src="{{ asset('build/js/bootstrap-datetimepicker.js') }}" charset="UTF-8"></script>
- <script type="text/javascript" src="{{ asset('build/js/bootstrap-datetimepicker.fr.js') }}" charset="UTF-8"></script>
 
- {{-- =========================== --}}
- <!-- iCheck -->
- <script src="{{ asset('vendors/iCheck/icheck.min.js') }}../"></script>
- <!-- Skycons -->
- <script src="{{ asset('vendors/skycons/skycons.js') }}../"></script>
- <!-- DateJS -->
- <script src="{{ asset('vendors/DateJS/build/date.js') }}../"></script>
- <!-- jQuery Tags Input -->
- <script src="{{ asset('vendors/jquery.tagsinput/src/jquery.tagsinput.js') }}">
- </script>
- <!-- Switchery -->
- <script src="{{ asset('vendors/switchery/dist/switchery.min.js') }}"></script>
 
 
 

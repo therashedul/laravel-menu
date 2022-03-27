@@ -21,21 +21,7 @@ use App\Http\Controllers\HitlogController;
 class PostController extends Controller
 {
 
-    function __construct()
-    {
-        $Hitlog  = new HitlogController;   
-        $Hitlog->sitehit();
-
-         $this->middleware('permission:post-list|post-create|post-edit|post-delete|post-publish|post-unpublish|post-multipledelete', ['only' => ['index', 'show']]);
-         $this->middleware('permission:post-create', ['only' => ['create', 'store']]);
-         $this->middleware('permission:post-edit', ['only' => ['edit', 'update']]);
-         $this->middleware('permission:post-delete', ['only' => ['destroy']]);
-
-         $this->middleware('permission:post-publish', ['only' => ['publish']]);
-         $this->middleware('permission:post-unpublish', ['only' => ['unpublish']]);
-
-         $this->middleware('permission:post-multipledelete', ['only' => ['multipledelete']]);
-    } 
+  
  
     /**
      * Display a listing of the resource.
@@ -97,6 +83,7 @@ class PostController extends Controller
                 $cat->title =  "unknown";  
                 $cat->name =  "unknown";  
                 $cat->slug =  "unknown";  
+                $post->status = "1";  
                 $cat->parent_id = "0";  
                 $cat->save();
             }

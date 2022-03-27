@@ -1,10 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\HitlogController;
-use App\Http\Controllers\CustomAuthController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +16,9 @@ use App\Http\Controllers\CustomAuthController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/frontendindex',[App\Http\Controllers\frontController::class,'index']);
@@ -41,6 +40,7 @@ Route::post('update-menuitem/{id}',[App\Http\Controllers\menuController::class,'
 Route::get('delete-menuitem/{id}/{key}/{in?}',[App\Http\Controllers\menuController::class,'deleteMenuItem']);
 Route::get('delete-menu/{id}',[App\Http\Controllers\menuController::class,'destroy']);	
 
+
 // category
 Route::group(['prefix' => 'category'], function (){ 
 		Route::get('/', [App\Http\Controllers\CategoryController::class, 'index'])->name('category/index');
@@ -50,6 +50,8 @@ Route::group(['prefix' => 'category'], function (){
 		Route::post('/update', [App\Http\Controllers\CategoryController::class, 'update'])->name('category/update');
 		Route::get('/delete/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('category/delete');
 		Route::get('/{category}', [App\Http\Controllers\CategoryController::class, 'categoryName'])->name('category');;
+		Route::get('/publish/{id}', [App\Http\Controllers\CategoryController::class, 'publish'])->name('category/publish');
+		Route::get('/unpublish/{id}', [App\Http\Controllers\CategoryController::class, 'unpublish'])->name('category/unpublish');
  });
  // post
 Route::group(['prefix' => 'post'], function (){ 
@@ -79,3 +81,4 @@ Route::group(['prefix' => 'page'], function (){
 		Route::get('/search', [App\Http\Controllers\PageController::class, 'search']);
 		Route::get('/{page}', [App\Http\Controllers\PageController::class, 'pagesName'])->name('pages');;
  });
+

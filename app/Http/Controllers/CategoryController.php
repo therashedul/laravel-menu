@@ -10,11 +10,7 @@ use App\Http\Controllers\HitlogController;
 
 class CategoryController extends Controller
 {
-      function __construct()
-    {
-        $Hitlog  = new HitlogController;   
-        $Hitlog->sitehit();
-    } 
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +21,7 @@ class CategoryController extends Controller
         //  $categories = Category::where('parent_id', 0)->get();
      
         $categories = Category::where('parent_id', '==', 'id')->paginate(5);
-        return view('newcategory.index', compact('categories'));
+        return view('category.index', compact('categories'));
     }
 
     /**
@@ -36,7 +32,7 @@ class CategoryController extends Controller
     public function create()
     {
           $categories = Category::where('parent_id', 0)->get();
-        return view('newcategory.create',compact('categories'));
+        return view('category.create',compact('categories'));
     }
 
     /**
@@ -85,7 +81,7 @@ class CategoryController extends Controller
     {
         $cat = Category::findOrFail($id);
         $categories = Category::all();
-        return view('newcategory.edit',compact('cat','categories'));
+        return view('category.edit',compact('cat','categories'));
     }
 
     /**
@@ -112,6 +108,21 @@ class CategoryController extends Controller
         }
         return redirect('/category')
             ->with('success','Category created successfully.');
+    }
+
+    public function publish($id){
+
+        $publish =  Category::find($id);
+        $publish->status = 0;
+         $publish->save();
+        return redirect('/category');
+    }
+    public function unpublish($id){
+        
+        $unpublish =  Category::find($id);
+        $unpublish->status = 1;
+          $unpublish->save();
+        return redirect('/category');
     }
 
     /**
@@ -148,7 +159,7 @@ class CategoryController extends Controller
                ->get();
             $posts=DB::table('posts')
            ->get();
-           return view('newcategory.single-cat', compact(['postmetas', 'posts','categories']));
+           return view('category.single-cat', compact(['postmetas', 'posts','categories']));
 
 
     }

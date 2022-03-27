@@ -18,19 +18,6 @@ use App\Http\Controllers\HitlogController;
 class PageController extends Controller
 {
 
-    function __construct()
-    {
-        $Hitlog  = new HitlogController;   
-        $Hitlog->sitehit();
-         $this->middleware('permission:page-list|page-create|page-edit|page-delete|page-publish|page-unpublish|page-multipledelete', ['only' => ['index', 'show']]);
-         $this->middleware('permission:page-create', ['only' => ['create', 'store']]);
-         $this->middleware('permission:page-edit', ['only' => ['edit', 'update']]);
-         $this->middleware('permission:page-delete', ['only' => ['destroy']]);
-         $this->middleware('permission:page-publish', ['only' => ['publish']]);
-         $this->middleware('permission:page-unpublish', ['only' => ['unpublish']]);
-
-         $this->middleware('permission:page-multipledelete', ['only' => ['multipledelete']]);
-    }
 
     /**
      * Display a listing of the resource.
