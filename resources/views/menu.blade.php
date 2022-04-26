@@ -24,6 +24,7 @@
             color: #a0a0a0;
             transform: rotate(0);
         }
+
     </style>
 
     <div class="container-fluid">
@@ -456,7 +457,8 @@
                             <div class="text-right">
                                 <button class="btn btn-sm btn-primary" id="saveMenu">Save Menu</button>
                             </div>
-                            <p><a href="{{ url('delete-menu') }}/{{ $desiredMenu->id }}">Delete Menu</a></p>
+                            <p><a href="{{ url('delete-menu') }}/{{ $desiredMenu->id }}"
+                                    class="btn btn-danger">Delete Selected Menu</a></p>
                         @endif
                     </div>
                 @endif

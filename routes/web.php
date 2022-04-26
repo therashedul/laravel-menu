@@ -27,7 +27,6 @@ Route::get('/sidebar',[App\Http\Controllers\frontController::class,'sidebar']);
 
 
 // Menu
-
 Route::get('manage-menus/{id?}',[App\Http\Controllers\menuController::class,'index']);
 Route::post('create-menu',[App\Http\Controllers\menuController::class,'store']);	
 Route::get('add-categories-to-menu',[App\Http\Controllers\menuController::class,'addCatToMenu']);

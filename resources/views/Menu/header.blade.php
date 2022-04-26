@@ -1,16 +1,11 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <h5>(Header Menu)</h5>
-        <a class="navbar-brand" href="#">Brand</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="main_nav">
 
-
-            {{-- =============================== --}}
-
-            {{-- ==================================== --}}
-            <ul class="navbar-nav">
+            <ul class="navbar-nav" style="text-transform: uppercase;">
 
                 <li class="nav-item active"><a class="nav-link" href="{{ url('/') }}">home</a></li>
                 @foreach ($topNavItems as $nav)
@@ -24,7 +19,6 @@
                                 @endif
                             </a>
                             <ul class="dropdown-menu">
-
                                 @foreach ($nav->children[0] as $child)
                                     <li>
                                         @if ($child->type == 'category')
@@ -167,12 +161,74 @@
                         @endif
                     @endif
                 @endforeach
-
-
             </ul>
-
-
-
         </div> <!-- navbar-collapse.// -->
-
     </nav>
+    <script type="text/javascript">
+        /// some script
+
+        // jquery ready start
+        $(document).ready(function() {
+            // jQuery code
+
+            //////////////////////// Prevent closing from click inside dropdown
+            $(document).on('click', '.dropdown-menu', function(e) {
+                e.stopPropagation();
+            });
+
+            // make it as accordion for smaller screens
+            if ($(window).width() < 992) {
+                $('.dropdown-menu a').click(function(e) {
+                    e.preventDefault();
+                    if ($(this).next('.submenu').length) {
+                        $(this).next('.submenu').toggle();
+                    }
+                    $('.dropdown').on('hide.bs.dropdown', function() {
+                        $(this).find('.submenu').hide();
+                    })
+                });
+            }
+
+        }); // jquery end
+    </script>
+
+    <style type="text/css">
+        @media (min-width: 992px) {
+            .dropdown-menu .dropdown-toggle:after {
+                border-top: .3em solid transparent;
+                border-right: 0;
+                border-bottom: .3em solid transparent;
+                border-left: .3em solid;
+            }
+
+            .dropdown-menu .dropdown-menu {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .dropdown-menu li {
+                position: relative;
+            }
+
+            .nav-item .submenu {
+                display: none;
+                position: absolute;
+                left: 100%;
+                top: -7px;
+            }
+
+            .nav-item .submenu-left {
+                right: 100%;
+                left: auto;
+            }
+
+            .dropdown-menu>li:hover {
+                background-color: #f1f1f1
+            }
+
+            .dropdown-menu>li:hover>.submenu {
+                display: block;
+            }
+        }
+
+    </style>
