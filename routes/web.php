@@ -27,21 +27,23 @@ Route::get('/sidebar',[App\Http\Controllers\frontController::class,'sidebar']);
 
 
 // Menu
-Route::get('manage-menus/{id?}',[App\Http\Controllers\menuController::class,'index']);
-Route::post('create-menu',[App\Http\Controllers\menuController::class,'store']);	
-Route::get('add-categories-to-menu',[App\Http\Controllers\menuController::class,'addCatToMenu']);
-Route::get('add-page-to-menu',[App\Http\Controllers\menuController::class,'addPaseToMenu']);
-Route::get('add-post-to-menu',[App\Http\Controllers\menuController::class,'addPostToMenu']);
-Route::get('add-custom-link',[App\Http\Controllers\menuController::class,'addCustomLink']);	
-Route::get('save-menu',[App\Http\Controllers\menuController::class,'saveMenu']);
-Route::get('update-menu',[App\Http\Controllers\menuController::class,'updateMenu']);	
-Route::post('update-menuitem/{id}',[App\Http\Controllers\menuController::class,'updateMenuItem']);
-Route::get('delete-menuitem/{id}/{key}/{in?}',[App\Http\Controllers\menuController::class,'deleteMenuItem']);
-Route::get('delete-menu/{id}',[App\Http\Controllers\menuController::class,'destroy']);	
+Route::group(['middleware'=>'auth'], function (){ 
+    Route::get('manage-menus/{id?}',[App\Http\Controllers\menuController::class,'index']);
+	Route::post('create-menu',[App\Http\Controllers\menuController::class,'store']);	
+	Route::get('add-categories-to-menu',[App\Http\Controllers\menuController::class,'addCatToMenu']);
+	Route::get('add-page-to-menu',[App\Http\Controllers\menuController::class,'addPaseToMenu']);
+	Route::get('add-post-to-menu',[App\Http\Controllers\menuController::class,'addPostToMenu']);
+	Route::get('add-custom-link',[App\Http\Controllers\menuController::class,'addCustomLink']);	
+	Route::get('save-menu',[App\Http\Controllers\menuController::class,'saveMenu']);
+	Route::get('update-menu',[App\Http\Controllers\menuController::class,'updateMenu']);	
+	Route::post('update-menuitem/{id}',[App\Http\Controllers\menuController::class,'updateMenuItem']);
+	Route::get('delete-menuitem/{id}/{key}/{in?}',[App\Http\Controllers\menuController::class,'deleteMenuItem']);
+	Route::get('delete-menu/{id}',[App\Http\Controllers\menuController::class,'destroy']);	
+ });
 
 
 // category
-Route::group(['prefix' => 'category'], function (){ 
+Route::group(['prefix' => 'category','middleware'=>'auth'], function (){ 
 		Route::get('/', [App\Http\Controllers\CategoryController::class, 'index'])->name('category/index');
 		Route::get('/create', [App\Http\Controllers\CategoryController::class, 'create'])->name('category/create');
 		Route::post('/store', [App\Http\Controllers\CategoryController::class, 'store'])->name('category/store');
@@ -53,7 +55,7 @@ Route::group(['prefix' => 'category'], function (){
 		Route::get('/unpublish/{id}', [App\Http\Controllers\CategoryController::class, 'unpublish'])->name('category/unpublish');
  });
  // post
-Route::group(['prefix' => 'post'], function (){ 
+Route::group(['prefix' => 'post', 'middleware'=>'auth'], function (){ 
 		Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('post/index');
 		Route::get('/create', [App\Http\Controllers\PostController::class, 'create'])->name('post/create');
 		Route::post('/store', [App\Http\Controllers\PostController::class, 'store'])->name('post/store');
@@ -67,7 +69,7 @@ Route::group(['prefix' => 'post'], function (){
 		Route::get('/{post}', [App\Http\Controllers\PostController::class, 'postName'])->name('posts');;
  });
  // page
-Route::group(['prefix' => 'page'], function (){ 
+Route::group(['prefix' => 'page','middleware'=>'auth'], function (){ 
 		Route::get('/', [App\Http\Controllers\PageController::class, 'index'])->name('page/index');
 		Route::get('/create', [App\Http\Controllers\PageController::class, 'create'])->name('page/create');
 		Route::post('/store', [App\Http\Controllers\PageController::class, 'store'])->name('page/store');
